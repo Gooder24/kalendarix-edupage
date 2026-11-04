@@ -1,0 +1,30 @@
+[project]
+name = "kalendarix-edupage"
+version = "0.1.0"
+description = "EduPage timetable backend: EduPage sync + calendar feed"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    # Pinned on purpose: EduPage has no official API, the library scrapes the
+    # web app. Review the diff before bumping.
+    "edupage-api==0.13.2",
+    "fastapi>=0.115",
+    "pydantic-settings>=2.6",
+    "uvicorn>=0.32",
+]
+
+[project.scripts]
+kalendarix-edupage = "kalendarix_edupage.cli:main"
+
+[dependency-groups]
+dev = [
+    "httpx2>=2",
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

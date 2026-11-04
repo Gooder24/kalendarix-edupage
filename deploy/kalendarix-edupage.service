@@ -1,0 +1,19 @@
+# systemd user unit. Install:
+#   install -D -m 644 deploy/kalendarix-edupage.service ~/.config/systemd/user/kalendarix-edupage.service
+#   systemctl --user daemon-reload && systemctl --user enable --now kalendarix-edupage
+#   loginctl enable-linger   # keep it running without an open login session
+# The paths assume the repository is cloned to ~/kalendarix-edupage; change both lines if not.
+
+[Unit]
+Description=Kalendarix EduPage backend (timetable sync + calendar feed)
+
+[Service]
+WorkingDirectory=%h/kalendarix-edupage
+ExecStart=%h/kalendarix-edupage/.venv/bin/kalendarix-edupage serve
+# After boot a VPN address (e.g. Tailscale) is not bindable until the VPN is up;
+# user units cannot order themselves after it, so just retry.
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

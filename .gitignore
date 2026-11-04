@@ -1,0 +1,11 @@
+# Secrets and local state: never commit
+.env
+data/
+
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Notes about one installation (machines, paths): never public
+NOTES.local.md

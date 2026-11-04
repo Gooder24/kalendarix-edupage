@@ -1,0 +1,8 @@
+[Unit]
+Description=Kalendarix EduPage: mirror the EduPage timetable into Kalendarix
+
+[Service]
+Type=oneshot
+# Where the backend runs; leave out when it is on this machine.
+#Environment=KX_EDUPAGE_URL=http://<backend-host>:8787
+ExecStart=%h/.local/share/kalendarix-edupage/kalendarix_edupage_sync.py

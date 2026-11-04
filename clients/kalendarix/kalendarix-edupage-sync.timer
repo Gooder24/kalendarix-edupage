@@ -1,0 +1,12 @@
+[Unit]
+Description=Kalendarix EduPage: refresh the timetable in Kalendarix every 15 minutes
+
+[Timer]
+# Wall-clock schedule with Persistent, so a run missed while the laptop slept
+# happens right after it wakes instead of up to 15 minutes later.
+OnCalendar=*:0/15
+Persistent=true
+RandomizedDelaySec=30
+
+[Install]
+WantedBy=timers.target
