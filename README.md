@@ -28,14 +28,29 @@ EduPage has no official API. The backend uses the
 gentle with it: the login session is saved and reused, so EduPage does not see a login every half
 hour. User-facing texts are in Slovak.
 
-## Run the backend
+## Requirements
 
-Needs [uv](https://docs.astral.sh/uv/) and Python 3.13.
+- Python 3.13
+- [uv](https://docs.astral.sh/uv/)
+- For a real EduPage login only: your school's EduPage subdomain, username and password. The tests
+  need none of them.
+
+## Quick start
+
+This installs the project and runs its tests. It needs no EduPage login:
 
 ```bash
-git clone https://github.com/Gooder24/kalendarix-edupage ~/kalendarix-edupage && cd ~/kalendarix-edupage
+git clone https://github.com/Gooder24/kalendarix-edupage && cd kalendarix-edupage && uv sync && uv run pytest
+```
+
+## Usage
+
+### Run the backend
+
+In the cloned folder:
+
+```bash
 cp .env.example .env && chmod 600 .env   # your school's subdomain, username and password
-uv sync
 uv run kalendarix-edupage verify-login   # logs in 3 times and checks the saved session
 uv run kalendarix-edupage serve          # or as a service, see deploy/kalendarix-edupage.service
 ```
@@ -48,12 +63,14 @@ Two-factor login works only by confirming it in the EduPage mobile app, and is u
 | `GET /api/timetable?from=2026-10-12&to=2026-10-18` | lessons as JSON |
 | `GET /api/events` | calendar events, the last 30 days and ahead |
 | `GET /calendar.ics` | the timetable as an iCalendar feed |
+| `GET /docs` | the API documentation page that FastAPI generates |
 | `POST /api/sync` | sync now |
 
-With `KX_TOKEN` set in `.env`, everything except `/health` needs `Authorization: Bearer <token>`
-or `?token=<token>`. Keep the backend on localhost or a private network: it serves your timetable.
+With `KX_TOKEN` set in `.env`, everything except `/health`, `/docs`, `/redoc` and `/openapi.json` needs
+`Authorization: Bearer <token>` or `?token=<token>`. Keep the backend on localhost or a private
+network: it serves your timetable.
 
-## Sync into Kalendarix
+### Sync into Kalendarix
 
 On the machine with Kalendarix:
 
@@ -73,15 +90,18 @@ timetable back.
 To remove it: `systemctl --user disable --now kalendarix-edupage-sync.timer`, delete the three
 installed files, and delete the "EduPage rozvrh" calendar in Kalendarix.
 
-## Develop
+## Tests
 
-```bash
-uv sync
-uv run pytest   # backend and sync script
-```
+`uv run pytest` runs the tests of the backend and the sync script. They use made-up data and do
+not contact EduPage.
 
 `edupage-api` is pinned to an exact version on purpose: it receives your password. Read the
 library's diff before bumping it.
+
+## Accessibility
+
+The accessibility statement, priorities, how to report a barrier and what has been tested are in
+[ACCESSIBILITY.md](ACCESSIBILITY.md). Contribution rules are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
