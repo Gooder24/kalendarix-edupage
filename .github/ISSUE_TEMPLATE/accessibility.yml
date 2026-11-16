@@ -1,0 +1,62 @@
+name: Accessibility barrier
+description: Report something that makes this project hard or impossible to use with assistive technology, or without a mouse.
+title: "[a11y] "
+labels: ["accessibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting. You do not need to disclose a disability.
+        Issues are public: do not paste passwords, tokens or personal data such as your real timetable.
+  - type: textarea
+    id: task
+    attributes:
+      label: What were you trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: barrier
+    attributes:
+      label: What happened instead, and what did you expect?
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did it happen?
+      options:
+        - Command-line tool (kalendarix-edupage)
+        - Calendar feed (/calendar.ics) in a calendar app
+        - JSON API
+        - API docs page (/docs)
+        - Kalendarix sync script
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How strongly does this barrier affect your ability to complete the task?
+      options:
+        - "Critical: I cannot complete a core task"
+        - "Serious: I can complete it, but only with a workaround"
+        - "Moderate: an annoyance or an inconsistent experience"
+        - "Minor: little effect on how I use the project"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, terminal or calendar app, and assistive technology, with versions.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot or recording (optional)
+      description: If you add one, describe in words what it shows.
