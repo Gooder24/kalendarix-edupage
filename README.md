@@ -105,4 +105,7 @@ The accessibility statement, priorities, how to report a barrier and what has be
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE). It depends on [edupage-api](https://pypi.org/project/edupage-api/), which is
+GPL-3.0-or-later: whoever distributes this backend together with that library (a package or a container image) has
+to follow the GPL for the whole. The MIT license covers the code only, not the Kalendarix name and logo; see
+[Kalendarix's BRANDING.md](https://github.com/Gooder24/kalendarix/blob/main/BRANDING.md).
