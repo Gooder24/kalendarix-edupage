@@ -88,7 +88,7 @@ If you find a barrier that is not listed here, please [report it](#reporting-an-
 
 ## Testing
 
-- **Automated, documentation:** `.github/scripts/check-docs.py` checks heading order, image alternative text and link text in every Markdown file. It runs on each pull request and on pushes to `main`. A new problem fails the check. Problems that existed before are listed in `.github/a11y-baseline.json`.
+- **Automated, documentation:** `.github/scripts/check-docs.py` checks heading order, image alternative text and link text in every Markdown file. It runs on each pull request and push to `main` that changes a Markdown file or the check itself. A new problem fails the check. Problems that existed before are listed in `.github/a11y-baseline.json`.
 - **Keyboard only:** not applicable. There is no graphical interface to test. The command is used from a terminal.
 - **Screen reader:** not done yet. To do it: start a screen reader (for example NVDA or Orca), run `kalendarix-edupage --help` in a terminal and listen to the output, then subscribe to a feed in a calendar app and check that event titles read clearly. Record the environment in an issue.
 - **Manual checks (zoom, reflow, colour contrast):** not applicable, for the same reason as keyboard checks.
